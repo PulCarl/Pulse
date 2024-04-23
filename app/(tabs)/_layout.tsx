@@ -1,6 +1,9 @@
 import FontAwesome from '@expo/vector-icons/FontAwesome';
+import { FontAwesome5 } from '@expo/vector-icons'; 
 import { Link, Tabs } from 'expo-router';
 import { Pressable, useColorScheme } from 'react-native';
+import { MaterialCommunityIcons } from '@expo/vector-icons'; 
+
 
 import Colors from '../../constants/Colors';
 
@@ -18,15 +21,19 @@ export default function TabLayout() {
   const colorScheme = useColorScheme();
 
   return (
+  
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
+        tabBarActiveTintColor: '#FB5C00', // Utilisation de la couleur "#FB5C00" pour l'icône et le texte du nom des onglets actifs
       }}>
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Tab One',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: 'Location',
+          tabBarIcon: ({ color }) => <FontAwesome5 name="key" size={24} color="#FFCF03" />,
+          tabBarLabelStyle: {
+            color: '#FFCF03', // Couleur personnalisée pour le texte du nom
+          },
           headerRight: () => (
             <Link href="/modal" asChild>
               <Pressable>
@@ -46,10 +53,26 @@ export default function TabLayout() {
       <Tabs.Screen
         name="two"
         options={{
-          title: 'Tab Two',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: 'Recherche',
+          tabBarIcon: ({ color }) => <FontAwesome name="search" size={24} color="#FFCF03" />,
+          headerShown: false, // Enlève la barre en haut de l'écran
+          tabBarLabelStyle: {
+            color: '#FFCF03', // Couleur personnalisée pour le texte du nom
+          },
+  }}
+/>
+      <Tabs.Screen
+        name="three"
+        options={{
+          title: 'Compte ',
+          tabBarIcon: ({ color }) => <MaterialCommunityIcons name="account" size={24} color="#FFCF03" />,
+          headerShown: false, // Enlève la barre en haut de l'écran
+          tabBarLabelStyle: {
+            color: '#FFCF03', // Couleur personnalisée pour le texte du nom
+          },
         }}
       />
     </Tabs>
+    
   );
 }
